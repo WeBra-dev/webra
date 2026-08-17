@@ -5,7 +5,7 @@
         <div class="footer-content">
 
             <div class="footer-brand">
-                <img src="./assets/img/logo2.png" style="width: 280px; height: 200px">
+                <img src="./assets/img/logo.png" style="width: 280px; height: 200px">
 
 
                 <p>
