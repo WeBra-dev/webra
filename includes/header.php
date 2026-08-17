@@ -10,6 +10,7 @@
     <title>Webra</title>
 
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -18,7 +19,7 @@
 
         <div class="container">
             <a href="index.php">
-                <img src="./assets/img/logo2.png" style="width: 80px; height: 60px">
+                <img src="./assets/img/logo.png" style="width: 80px; height: 60px">
             </a>
 
             <nav class="navbar">
