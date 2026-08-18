@@ -1210,7 +1210,14 @@ section:not(.hero) {
     }
 
     .footer-brand {
-        grid-column: auto;
+        display: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer-brand img {
+        display: block;
+        margin: 0 auto;
     }
 
     .cta h2 {
