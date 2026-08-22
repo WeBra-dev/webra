@@ -45,7 +45,7 @@
         <div class="footer-bottom">
 
             <p>
-                &copy; <?= date('Y') ?> Webra. Todos os direitos reservados.
+                &copy; <?= date('Y') ?> <a href="#"><strong><i>We<span style="color:var(--primary)">B</span><span style="color:var(--secondary)">r</span><span style="color:var(--accent)">a</span></i></strong></a>. Todos os direitos reservados.
             </p>
 
         </div>

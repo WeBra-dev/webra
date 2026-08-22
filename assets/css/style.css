@@ -885,7 +885,7 @@ section:not(.hero) {
 }
 
 .portfolio-image {
-    height: 250px;
+    height: 180px;
 
     display: flex;
 
@@ -1129,6 +1129,11 @@ section:not(.hero) {
 
 
 @media (max-width: 900px) {
+
+    .portfolio-image img {
+        width: 400px;
+        height: 220px;
+    }
 
     .header .container {
         gap: 25px;
