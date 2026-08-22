@@ -13,6 +13,15 @@
   --radius-lg: 22px;
   --radius-md: 14px;
   --ease: cubic-bezier(.16,.84,.44,1);
+  
+    /* Verde */
+  --webra-primary: #009c3b;
+
+  /* Amarelo */
+  --webra-secondary: #ffdf00;
+
+  /* Azul */
+  --webra-tertiary: #002776;
 }
 
 *{ box-sizing:border-box; margin:0; padding:0; }
@@ -76,6 +85,29 @@ header.scrolled{ background: rgba(27,20,15,.85); border-bottom-color: var(--bord
 .nav-links a::after{ content:""; position:absolute; left:0; bottom:-4px; width:0; height:1.5px; background:var(--ember); transition:width .3s var(--ease); }
 .nav-links a:hover{ color: var(--cream); }
 .nav-links a:hover::after{ width:100%; }
+
+.demo-banner {
+    position: fixed;
+    top: 78px;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+
+    padding: 10px 0;
+
+    background: rgba(201, 162, 77, 0.08);
+    border-bottom: 1px solid rgba(201, 162, 77, 0.25);
+
+    text-align: center;
+
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--primary-light);
+}
+
+.demo-banner strong {
+    color: var(--text);
+}
 
 .menu-toggle{ display:none; width:34px; height:34px; background:none; border:none; }
 .menu-toggle span{ display:block; width:22px; height:2px; background:var(--cream); margin:5px auto; }

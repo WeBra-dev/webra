@@ -262,27 +262,27 @@
                 </article>
                 <article class="portfolio-card projeto03">
                     <div class="portfolio-image">
-                        <span>Projeto 03</span>
+                        <img src="assets/img/fumaca.png" alt="IMG Projeto 03">
                     </div>
                     <div class="portfolio-info">
                         <h3>
                             Site Personalizado
                         </h3>
                         <p>
-                            Desenvolvimento web
+                            Desenvolvimento web da sua preferência
                         </p>
                     </div>
                 </article>
                 <article class="portfolio-card projeto04">
                     <div class="portfolio-image">
-                        <span>Projeto 04</span>
+                        <img src="assets/img/catalogoonline.png" alt="IMG Projeto 04">
                     </div>
                     <div class="portfolio-info">
                         <h3>
                             Catálogo Online
                         </h3>
                         <p>
-                            Produtos e serviços
+                            Produtos e serviços criados por você!
                         </p>
                     </div>
                 </article>
