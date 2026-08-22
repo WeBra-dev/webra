@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo — WeBra Demo</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="catalogo.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+       <a href="catalogo.html" class="logo">We<span style="color:var(--primary)">B</span><span style="color:var(--secondary)">r</span><span style="color:var(--accent)">a</span></a>
+        <nav class="navbar">
+            <a href="catalogo.html">Catálogo</a>
+            <a href="login.html">Painel do administrador</a>
+        </nav>
+        <a href="login.html" class="header-button">Acessar painel</a>
+    </div>
+</header>
+
+<div class="demo-banner">
+    <div class="container">
+        <strong>Protótipo demonstrativo</strong> — sem banco de dados. Os produtos criados ficam salvos apenas
+        neste navegador.
+        <br>
+        Este site foi criado <strong>de acordo com a personalização do nosso atual</strong>, mas a estética e
+        personalização podem ser totalmente à sua escolha.
+    </div>
+</div>
+
+<main class="page-with-banner">
+
+    <section class="page-top">
+        <div class="container page-top-row">
+            <div>
+                <span class="section-badge">Catálogo online</span>
+                <h1>Produtos <span>cadastrados pela loja.</span></h1>
+                <p>Esta é a vitrine pública. Tudo o que for criado no painel administrativo
+                aparece automaticamente aqui.</p>
+            </div>
+            <a href="login.html" class="btn btn-primary">+ Adicionar produto</a>
+        </div>
+    </section>
+
+    <section style="padding-top:0;">
+        <div class="container">
+            <div class="product-grid" id="productGrid"></div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-bottom">
+            Demonstração de catálogo online — protótipo sem funcionalidade real.
+        </div>
+    </div>
+</footer>
+
+<script>
+    const SEED_PRODUCTS = [
+        { name: "Camisa Estampada", price: 89.9, category: "Vestuário", desc: "Camisa 100% algodão com estampa exclusiva.", icon: "👕", color: "linear-gradient(135deg,#009c3b,#00c853)", seed: true },
+        { name: "Tênis Esportivo", price: 219.9, category: "Calçados", desc: "Modelo leve para uso diário e treinos.", icon: "👟", color: "linear-gradient(135deg,#002776,#1647a8)", seed: true },
+        { name: "Caneca Personalizada", price: 39.9, category: "Casa", desc: "Caneca de cerâmica com acabamento fosco.", icon: "☕", color: "linear-gradient(135deg,#ffdf00,#e6b800)", seed: true },
+        { name: "Boné Ajustável", price: 59.9, category: "Acessórios", desc: "Boné em sarja com fecho regulável.", icon: "🧢", color: "linear-gradient(135deg,#009c3b,#002776)", seed: true },
+    ];
+
+    function loadProducts() {
+        const saved = JSON.parse(localStorage.getItem("demo_products") || "[]");
+        return [...SEED_PRODUCTS, ...saved];
+    }
+
+    function formatPrice(value) {
+        return Number(value).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+    }
+
+    function render() {
+        const grid = document.getElementById("productGrid");
+        const products = loadProducts();
+
+        if (!products.length) {
+            grid.innerHTML = `
+                <div class="empty-state">
+                    <strong>Nenhum produto cadastrado</strong>
+                    Acesse o painel administrativo para adicionar o primeiro produto do catálogo.
+                </div>`;
+            return;
+        }
+
+        grid.innerHTML = products.map(p => `
+            <article class="product-card">
+                <div class="product-thumb" style="background:${p.color}">${p.icon}</div>
+                <div class="product-info">
+                    <span class="product-category">${p.category}</span>
+                    <h3>${p.name}</h3>
+                    <p>${p.desc}</p>
+                    <div class="product-price"><small>Preço</small>${formatPrice(p.price)}</div>
+                    ${p.seed ? '<span class="product-seed-tag">Produto de exemplo</span>' : ''}
+                </div>
+            </article>
+        `).join("");
+    }
+
+    render();
+</script>
+
+</body>
+</html>

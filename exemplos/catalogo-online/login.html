@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar — Painel Administrativo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="catalogo.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="catalogo.html" class="logo">We<span style="color:var(--primary)">B</span><span
+                    style="color:var(--secondary)">r</span><span style="color:var(--accent)">a</span></a>
+            <nav class="navbar">
+                <a href="catalogo.html">Catálogo</a>
+                <a href="login.html">Painel do administrador</a>
+            </nav>
+            <a href="catalogo.html" class="header-button">Ver catálogo</a>
+        </div>
+    </header>
+
+<div class="demo-banner">
+    <div class="container">
+        <strong>Protótipo demonstrativo</strong> — sem banco de dados. Os produtos criados ficam salvos apenas
+        neste navegador.
+        <br>
+        Este site foi criado <strong>de acordo com a personalização do nosso atual</strong>, mas a estética e
+        personalização podem ser totalmente à sua escolha.
+    </div>
+</div>
+
+    <div class="login-shell">
+        <div class="login-card">
+            <span class="section-badge">Área restrita</span>
+            <h1>Acesse sua conta</h1>
+            <p>Entre com sua conta de administrador para gerenciar o catálogo.</p>
+
+            <div class="form-error" id="formError">Preencha e-mail e senha para continuar.</div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" placeholder="seuemail@loja.com" value="admin@webra.com">
+                </div>
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" placeholder="••••••••" value="demo123">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Entrar no painel</button>
+            </form>
+
+            <div class="login-hint">
+                <strong>Credenciais de demonstração</strong><br>
+                Qualquer e-mail e senha preenchidos funcionam neste protótipo — não há verificação real.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById("loginForm");
+        const error = document.getElementById("formError");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const email = document.getElementById("email").value.trim();
+            const senha = document.getElementById("senha").value.trim();
+
+            if (!email || !senha) {
+                error.style.display = "block";
+                return;
+            }
+
+            sessionStorage.setItem("demo_admin_logged", "true");
+            sessionStorage.setItem("demo_admin_email", email);
+            window.location.href = "painel.html";
+        });
+    </script>
+
+</body>
+
+</html>
