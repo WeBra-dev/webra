@@ -11,7 +11,7 @@
 
 <header class="header">
     <div class="container">
-       <a href="catalogo.html" class="logo">We<span style="color:var(--primary)">B</span><span style="color:var(--secondary)">r</span><span style="color:var(--accent)">a</span></a>
+<a href="catalogo.html" class="logo">We<span style="color:var(--webra-primary)">B</span><span style="color:var(--webra-secondary)">r</span><span style="color:var(--webra-tertiary)">a</span></a>
         <nav class="navbar">
             <a href="catalogo.html">Catálogo</a>
             <a href="login.html">Painel do administrador</a>
@@ -22,11 +22,8 @@
 
 <div class="demo-banner">
     <div class="container">
-        <strong>Protótipo demonstrativo</strong> — sem banco de dados. Os produtos criados ficam salvos apenas
-        neste navegador.
-        <br>
-        Este site foi criado <strong>de acordo com a personalização do nosso atual</strong>, mas a estética e
-        personalização podem ser totalmente à sua escolha.
+        Protótipo demonstrativo — sem banco de dados. Os produtos criados ficam salvos apenas
+        <strong>neste navegador</strong>.
     </div>
 </div>
 
@@ -62,10 +59,10 @@
 
 <script>
     const SEED_PRODUCTS = [
-        { name: "Camisa Estampada", price: 89.9, category: "Vestuário", desc: "Camisa 100% algodão com estampa exclusiva.", icon: "👕", color: "linear-gradient(135deg,#009c3b,#00c853)", seed: true },
-        { name: "Tênis Esportivo", price: 219.9, category: "Calçados", desc: "Modelo leve para uso diário e treinos.", icon: "👟", color: "linear-gradient(135deg,#002776,#1647a8)", seed: true },
-        { name: "Caneca Personalizada", price: 39.9, category: "Casa", desc: "Caneca de cerâmica com acabamento fosco.", icon: "☕", color: "linear-gradient(135deg,#ffdf00,#e6b800)", seed: true },
-        { name: "Boné Ajustável", price: 59.9, category: "Acessórios", desc: "Boné em sarja com fecho regulável.", icon: "🧢", color: "linear-gradient(135deg,#009c3b,#002776)", seed: true },
+        { name: "Camisa Estampada", price: 89.9, category: "Vestuário", desc: "Camisa 100% algodão com estampa exclusiva.", icon: "👕", color: "linear-gradient(135deg,#c9a24d,#e0bf72)", seed: true },
+        { name: "Tênis Esportivo", price: 219.9, category: "Calçados", desc: "Modelo leve para uso diário e treinos.", icon: "👟", color: "linear-gradient(135deg,#8a6cff,#a893ff)", seed: true },
+        { name: "Caneca Personalizada", price: 39.9, category: "Casa", desc: "Caneca de cerâmica com acabamento fosco.", icon: "☕", color: "linear-gradient(135deg,#2f8f7a,#45b39c)", seed: true },
+        { name: "Boné Ajustável", price: 59.9, category: "Acessórios", desc: "Boné em sarja com fecho regulável.", icon: "🧢", color: "linear-gradient(135deg,#c9a24d,#8a6cff)", seed: true },
     ];
 
     function loadProducts() {

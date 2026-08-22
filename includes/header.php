@@ -6,11 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description" content="Desenvolvemos sites modernos, rápidos e personalizados para empresas e negócios.">
+    <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
 
     <title>Webra</title>
 
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <script>
+        $(document).ready(function(){
+            $('.projeto03').on('click', () => {window.location.href = './exemplos/siteperso/index.html'});
+            $('.projeto04').on('click', () => {window.location.href = './exemplos/catalogo-online/catalogo.html'});
+        })
+    </script>
 </head>
 
 <body>
