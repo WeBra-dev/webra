@@ -923,6 +923,10 @@ section:not(.hero) {
     font-size: 0.9rem;
 }
 
+.projeto01, .projeto02, .projeto03, .projeto04 {
+    cursor: pointer;
+}
+
 
 /* ========================================
    CTA

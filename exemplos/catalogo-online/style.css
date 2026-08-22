@@ -1,4 +1,11 @@
 /* ========================================
+   FONTES
+======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap');
+
+
+/* ========================================
    RESET
 ======================================== */
 
@@ -11,12 +18,13 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 90px;
+    overflow-y: scroll;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #050b08;
-    color: #f5f7fa;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    background: #0c0a10;
+    color: #f5f2ec;
     line-height: 1.6;
 }
 
@@ -36,30 +44,42 @@ img {
 ======================================== */
 
 :root {
-    --background: #050b08;
-    --background-secondary: #09140e;
+    --background: #0c0a10;
+    --background-secondary: #120e17;
 
-    --surface: #0d1b13;
-    --surface-hover: #13271c;
+    --surface: #18131f;
+    --surface-hover: #221b2c;
+
+    /* Dourado — cor de marca principal */
+    --primary: #c9a24d;
+    --primary-light: #e0bf72;
+
+    /* Violeta — realce secundário */
+    --secondary: #8a6cff;
+    --secondary-light: #a893ff;
+
+    /* Verde-petróleo — realce terciário */
+    --accent: #2f8f7a;
+    --accent-light: #45b39c;
 
     /* Verde */
-    --primary: #009c3b;
-    --primary-light: #00c853;
+    --webra-primary: #009c3b;
 
     /* Amarelo */
-    --secondary: #ffdf00;
-    --secondary-light: #ffe94a;
+    --webra-secondary: #ffdf00;
 
     /* Azul */
-    --accent: #002776;
-    --accent-light: #1647a8;
+    --webra-tertiary: #002776;
 
-    --text: #f5f7fa;
-    --text-secondary: #a8b5ad;
+    --text: #f5f2ec;
+    --text-secondary: #978fa3;
 
     --border: rgba(255, 255, 255, 0.08);
 
     --container: 1200px;
+
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Inter', Arial, Helvetica, sans-serif;
 
     --transition: 0.3s ease;
 }
@@ -86,14 +106,14 @@ img {
     left: 0;
 
     width: 100%;
-    height: 75px;
+    height: 78px;
 
     z-index: 1000;
 
-    background: rgba(5, 11, 8, 0.78);
+    background: rgba(12, 10, 16, 0.8);
 
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 
     border-bottom: 1px solid var(--border);
 }
@@ -116,16 +136,18 @@ img {
     display: inline-flex;
     align-items: center;
 
-    font-size: 1.4rem;
-    font-weight: 800;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-style: italic;
 
-    letter-spacing: -0.5px;
+    letter-spacing: 0.5px;
 
     transition: var(--transition);
 }
 
 .logo:hover {
-    color: var(--secondary);
+    color: var(--primary-light);
 }
 
 .logo img {
@@ -150,8 +172,10 @@ img {
 
     color: var(--text-secondary);
 
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 500;
+
+    letter-spacing: 0.2px;
 
     transition: var(--transition);
 }
@@ -169,9 +193,9 @@ img {
     bottom: -7px;
 
     width: 0;
-    height: 2px;
+    height: 1px;
 
-    background: var(--secondary);
+    background: var(--primary);
 
     transition: var(--transition);
 }
@@ -188,16 +212,18 @@ img {
 .header-button {
     margin-left: auto;
 
-    padding: 10px 18px;
+    padding: 10px 20px;
 
-    border-radius: 8px;
+    border-radius: 4px;
 
     background: var(--primary);
 
-    color: #ffffff;
+    color: #14100b;
 
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    letter-spacing: 0.3px;
 
     transition: var(--transition);
 }
@@ -208,7 +234,7 @@ img {
     transform: translateY(-2px);
 
     box-shadow:
-        0 10px 30px rgba(0, 156, 59, 0.25);
+        0 10px 30px rgba(201, 162, 77, 0.25);
 }
 
 
@@ -222,34 +248,36 @@ img {
     align-items: center;
     justify-content: center;
 
-    padding: 13px 24px;
+    padding: 14px 26px;
 
-    border-radius: 8px;
+    border-radius: 4px;
 
-    font-size: 0.95rem;
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    letter-spacing: 0.3px;
 
     transition: var(--transition);
     cursor: pointer;
     border: none;
-    font-family: inherit;
+    font-family: var(--font-body);
 }
 
 .btn-primary {
     background: var(--primary);
 
-    color: #ffffff;
+    color: #14100b;
 }
 
 .btn-primary:hover {
     background: var(--primary-light);
 
-    color: #ffffff;
+    color: #14100b;
 
     transform: translateY(-3px);
 
     box-shadow:
-        0 15px 35px rgba(0, 156, 59, 0.25);
+        0 15px 35px rgba(201, 162, 77, 0.25);
 }
 
 .btn-secondary {
@@ -263,9 +291,9 @@ img {
 .btn-secondary:hover {
     background: var(--surface);
 
-    border-color: rgba(255, 223, 0, 0.3);
+    border-color: rgba(138, 108, 255, 0.35);
 
-    color: var(--secondary);
+    color: var(--secondary-light);
 
     transform: translateY(-3px);
 }
@@ -290,12 +318,12 @@ img {
     background:
         radial-gradient(
             circle at 15% 50%,
-            rgba(0, 156, 59, 0.16),
+            rgba(201, 162, 77, 0.14),
             transparent 35%
         ),
         radial-gradient(
             circle at 85% 30%,
-            rgba(0, 39, 118, 0.14),
+            rgba(138, 108, 255, 0.14),
             transparent 30%
         );
 }
@@ -313,7 +341,7 @@ img {
 
     border-radius: 50%;
 
-    background: rgba(0, 156, 59, 0.08);
+    background: rgba(201, 162, 77, 0.08);
 
     filter: blur(100px);
 
@@ -333,7 +361,7 @@ img {
 
     border-radius: 50%;
 
-    background: rgba(0, 39, 118, 0.08);
+    background: rgba(47, 143, 122, 0.10);
 
     filter: blur(100px);
 
@@ -368,21 +396,21 @@ img {
 
     margin-bottom: 20px;
 
-    padding: 6px 12px;
+    padding: 6px 14px;
 
-    border: 1px solid rgba(0, 156, 59, 0.35);
+    border: 1px solid rgba(201, 162, 77, 0.4);
 
-    border-radius: 50px;
+    border-radius: 2px;
 
-    background: rgba(0, 156, 59, 0.08);
+    background: rgba(201, 162, 77, 0.08);
 
     color: var(--primary-light);
 
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.75rem;
+    font-weight: 700;
 
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
 
@@ -391,11 +419,14 @@ img {
 ======================================== */
 
 .hero h1 {
-    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-family: var(--font-display);
+    font-weight: 600;
+
+    font-size: clamp(3rem, 6vw, 5.2rem);
 
     line-height: 1.05;
 
-    letter-spacing: -3px;
+    letter-spacing: -1px;
 
     margin-bottom: 25px;
 }
@@ -403,7 +434,8 @@ img {
 .hero h1 span,
 .section-header h2 span,
 .about-text h2 span {
-    color: var(--secondary);
+    color: var(--primary);
+    font-style: italic;
 }
 
 .hero-text > p {
@@ -442,13 +474,16 @@ section:not(.hero) {
 }
 
 .section-header h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+
     margin-bottom: 20px;
 
-    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
 
     line-height: 1.1;
 
-    letter-spacing: -1.5px;
+    letter-spacing: -0.5px;
 }
 
 .section-header p {
@@ -475,7 +510,7 @@ section:not(.hero) {
 
     border: 1px solid var(--border);
 
-    border-radius: 16px;
+    border-radius: 6px;
 
     background: var(--surface);
 
@@ -485,10 +520,10 @@ section:not(.hero) {
 .portfolio-card:hover {
     transform: translateY(-8px);
 
-    border-color: rgba(0, 156, 59, 0.3);
+    border-color: rgba(201, 162, 77, 0.35);
 
     box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.2);
+        0 20px 50px rgba(0, 0, 0, 0.3);
 }
 
 .portfolio-image {
@@ -502,16 +537,16 @@ section:not(.hero) {
     background:
         radial-gradient(
             circle at center,
-            rgba(0, 156, 59, 0.18),
+            rgba(201, 162, 77, 0.18),
             transparent 50%
         ),
         linear-gradient(
             135deg,
-            #0d1b13,
-            #06110b
+            #18131f,
+            #0c0a10
         );
 
-    color: var(--secondary);
+    color: var(--primary-light);
 
     font-weight: 600;
 }
@@ -521,6 +556,8 @@ section:not(.hero) {
 }
 
 .portfolio-info h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
     margin-bottom: 5px;
 }
 
@@ -536,7 +573,7 @@ section:not(.hero) {
 ======================================== */
 
 .footer {
-    background: #030805;
+    background: #08060b;
 
     border-top: 1px solid var(--border);
 
@@ -568,7 +605,10 @@ section:not(.hero) {
 .footer h3 {
     margin-bottom: 18px;
 
-    font-size: 1rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-secondary);
 }
 
 .footer-links,
@@ -593,7 +633,7 @@ section:not(.hero) {
 
 .footer-links a:hover,
 .footer-contact a:hover {
-    color: var(--secondary);
+    color: var(--primary-light);
 
     transform: translateX(4px);
 }
@@ -603,7 +643,7 @@ section:not(.hero) {
 
     border-top: 1px solid var(--border);
 
-    color: #687870;
+    color: #5c5566;
 
     font-size: 0.85rem;
 
@@ -688,9 +728,9 @@ section:not(.hero) {
     }
 
     .hero h1 {
-        font-size: 3rem;
+        font-size: 2.6rem;
 
-        letter-spacing: -2px;
+        letter-spacing: -0.5px;
     }
 
     .hero-buttons {
@@ -719,4 +759,3 @@ section:not(.hero) {
         grid-column: auto;
     }
 }
-
