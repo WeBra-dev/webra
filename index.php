@@ -1,4 +1,4 @@
-<?php include ("includes/header.php");?>
+<?php include("includes/header.php"); ?>
 <main>
 
     <!-- ========================================
@@ -403,6 +403,26 @@
 
                 </article>
 
+                <article class="portfolio-card">
+
+                    <div class="portfolio-image">
+                        <span>Projeto 04</span>
+                    </div>
+
+                    <div class="portfolio-info">
+
+                        <h3>
+                            Catálogo Online
+                        </h3>
+
+                        <p>
+                            Produtos e serviços
+                        </p>
+
+                    </div>
+
+                </article>
+
             </div>
 
         </div>
@@ -435,7 +455,7 @@
                 </p>
 
                 <a href="#"
-                   class="btn btn-primary">
+                    class="btn btn-primary">
                     Solicitar orçamento
                 </a>
 
@@ -446,4 +466,4 @@
     </section>
 
 </main>
-<?php include ("includes/footer.php");?>
+<?php include("includes/footer.php"); ?>
