@@ -50,6 +50,29 @@ button{ font-family:inherit; cursor:pointer; }
 .container{ max-width:1140px; margin:0 auto; padding:0 32px; }
 section .container{ padding-top:100px; padding-bottom:100px; }
 
+.demo-banner {
+    position: fixed;
+    top: 78px;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+
+    padding: 10px 0;
+
+    background: rgba(201, 162, 77, 0.08);
+    border-bottom: 1px solid rgba(201, 162, 77, 0.25);
+
+    text-align: center;
+
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--primary-light);
+}
+
+.demo-banner strong {
+    color: var(--text);
+}
+
 .eyebrow{
   display:inline-flex; align-items:center; gap:8px;
   font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
