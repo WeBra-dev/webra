@@ -362,7 +362,7 @@
                         name="mensagem"
                         id="mensagem"
                         rows="6"
-                        placeholder="Conte um pouco sobre seu projeto..."
+                        placeholder="Conte um pouco sobre seu projeto... (Opcional)"
                     ></textarea>
                 </div>
 
