@@ -306,11 +306,70 @@
                     Conte para nós sobre sua ideia e vamos
                     transformar ela em um projeto incrível.
                 </p>
-                <a href="#"
-                    class="btn btn-primary">
+                <a href="https://wa.me/5533988398567"
+                    class="btn btn-primary"
+                    target="_blank">
                     Solicitar orçamento
                 </a>
             </div>
+        </div>
+    </section>
+
+    <section id="formulario" class="contact-form-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">
+                    Entre em contato conosco
+                </span>
+                <h2>
+                    Vamos conversar sobre
+                    <span>seu projeto.</span>
+                </h2>
+                <p>
+                    Preencha o formulário e conte um pouco sobre o que você precisa.
+                </p>
+            </div>
+
+            <form class="contact-form" action="" method="POST">
+                <div class="alerta" style="display: none;">
+                    <strong><span id="aviso"></span></strong>
+                </div>
+                <div class="form-group">
+                    <label for="nome">Nome<span style="color: red">*</span></label>
+                    <input
+                        type="text"
+                        name="nome"
+                        id="nome"
+                        placeholder="Digite seu nome"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail<span style="color: red">*</span></label>
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        placeholder="Digite seu e-mail"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="mensagem">Mensagem</label>
+                    <textarea
+                        name="mensagem"
+                        id="mensagem"
+                        rows="6"
+                        placeholder="Conte um pouco sobre seu projeto..."
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary enviarMensagem">
+                    Enviar mensagem
+                </button>
+            </form>
         </div>
     </section>
 </main>

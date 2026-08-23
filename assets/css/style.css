@@ -104,7 +104,12 @@ img {
     display: flex;
     align-items: center;
 
-    gap: 50px;
+    gap: 80px;
+}
+
+.header .logo-webra {
+    font-size: 30px;
+    font-family: perpertua;
 }
 
 
@@ -997,6 +1002,108 @@ section:not(.hero) {
     color: var(--text-secondary);
 }
 
+/* ========================================
+   FORMULÁRIO DE CONTATO
+======================================== */
+
+.contact-form-section {
+    background: var(--background-secondary);
+}
+
+/* .contact-form-section #aviso {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+} */
+
+.alerta {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #050b08;
+    border-radius: 0.5em;
+    height: 50px;
+}
+
+.contact-form {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px;
+
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+    background: var(--surface);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    background: var(--background);
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 0.95rem;
+
+    outline: none;
+
+    transition: var(--transition);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #687870;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(0, 156, 59, 0.12);
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.contact-form .btn {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+}
+
+
+
 
 /* ========================================
    FOOTER
@@ -1084,6 +1191,16 @@ section:not(.hero) {
 
 @media (max-width: 1000px) {
 
+    .header .container {
+        font-size: 30px;
+        font-family: serif;
+        display: flex;
+
+        justify-content: center;
+        text-align: center;
+
+    }
+
     .hero-content {
         grid-template-columns: 1fr;
 
@@ -1130,6 +1247,16 @@ section:not(.hero) {
 
 @media (max-width: 900px) {
 
+    .header .container {
+        font-size: 30px;
+        font-family: serif;
+        display: flex;
+
+        justify-content: center;
+        text-align: center;
+
+    }
+
     .portfolio-image img {
         width: 400px;
         height: 220px;
@@ -1163,6 +1290,20 @@ section:not(.hero) {
 
 
 @media (max-width: 650px) {
+
+    .contact-form {
+        padding: 25px 20px;
+    }
+
+    .header .container {
+        font-size: 30px;
+        font-family: serif;
+        display: flex;
+
+        justify-content: center;
+        text-align: center;
+
+    }
 
     .container {
         width: min(100% - 30px, var(--container));
