@@ -1010,13 +1010,6 @@ section:not(.hero) {
     background: var(--background-secondary);
 }
 
-/* .contact-form-section #aviso {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
-} */
-
 .alerta {
 
     display: flex;
@@ -1193,7 +1186,6 @@ section:not(.hero) {
 
     .header .container {
         font-size: 30px;
-        font-family: serif;
         display: flex;
 
         justify-content: center;
@@ -1249,7 +1241,6 @@ section:not(.hero) {
 
     .header .container {
         font-size: 30px;
-        font-family: serif;
         display: flex;
 
         justify-content: center;
@@ -1297,7 +1288,6 @@ section:not(.hero) {
 
     .header .container {
         font-size: 30px;
-        font-family: serif;
         display: flex;
 
         justify-content: center;
