@@ -74,6 +74,10 @@
   .logo{font-family:'Poppins',sans-serif;font-weight:800;font-size:21px;letter-spacing:.01em;color:var(--branco);transition:color var(--transicao);display:flex;align-items:center;gap:8px;}
   .logo span{color:var(--dourado);}
   header.scrolled .logo{color:var(--verde-escuro);}
+  .footer-bottom .logo{
+  display:inline-flex;  
+  font-size:13px;
+  font-weight:700;}
   nav ul{display:flex;gap:38px;align-items:center;}
   nav a{font-size:14px;font-weight:500;color:rgba(255,255,255,.88);transition:color var(--transicao);position:relative;}
   nav a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--dourado);transition:width var(--transicao);}
