@@ -236,7 +236,7 @@
             <div class="portfolio-grid">
                 <article class="portfolio-card projeto01">
                     <div class="portfolio-image">
-                        <img src="assets/img/novaagro.png" alt="IMG Projeto 01">
+                        <img src="assets/img/novaagro.png" alt="IMG Projeto 01" height="100%">
                     </div>
                     <div class="portfolio-info">
                         <h3>
@@ -249,7 +249,7 @@
                 </article>
                 <article class="portfolio-card projeto02">
                     <div class="portfolio-image">
-                        <img src="assets/img/almeidaadv.png" alt="IMG Projeto 02">
+                        <img src="assets/img/almeidaadv.png" alt="IMG Projeto 02" height="100%">
                     </div>
                     <div class="portfolio-info">
                         <h3>

@@ -14,7 +14,7 @@
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
     <script>
         $(document).ready(function(){
-            $('.projeto01').on('click', () => {window.location.href = './exemplos/site-institucional/index.html'});
+            $('.projeto01').on('click', () => {window.location.href = './exemplos/institucional/index.html'});
             $('.projeto02').on('click', () => {window.location.href = './exemplos/landingpage/index.html'});
             $('.projeto03').on('click', () => {window.location.href = './exemplos/siteperso/index.html'});
             $('.projeto04').on('click', () => {window.location.href = './exemplos/catalogo-online/catalogo.html'});
