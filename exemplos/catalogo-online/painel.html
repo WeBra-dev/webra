@@ -11,12 +11,12 @@
 
 <header class="header">
     <div class="container">
-        <a href="catalogo.html" class="logo">We<span style="color:var(--webra-primary)">B</span><span style="color:var(--webra-secondary)">r</span><span style="color:var(--webra-tertiary)">a</span></a>
+        <a href="index" class="logo">We<span style="color:var(--webra-primary)">B</span><span style="color:var(--webra-secondary)">r</span><span style="color:var(--webra-tertiary)">a</span></a>
         <nav class="navbar">
-            <a href="catalogo.html">Catálogo</a>
-            <a href="painel.html">Painel do administrador</a>
+            <a href="index">Catálogo</a>
+            <a href="painel">Painel do administrador</a>
         </nav>
-        <a href="catalogo.html" class="header-button">Ver catálogo</a>
+        <a href="index" class="header-button">Ver catálogo</a>
     </div>
 </header>
 
@@ -109,7 +109,7 @@
 <script>
     // Gate simples: exige "login" feito na página anterior
     if (sessionStorage.getItem("demo_admin_logged") !== "true") {
-        window.location.href = "login.html";
+        window.location.href = "login";
     }
 
     const emailLogged = sessionStorage.getItem("demo_admin_email") || "admin@webra.com";
@@ -119,7 +119,7 @@
     document.getElementById("logoutLink").addEventListener("click", function (e) {
         e.preventDefault();
         sessionStorage.removeItem("demo_admin_logged");
-        window.location.href = "login.html";
+        window.location.href = "login";
     });
 
     // Seleção de cor
