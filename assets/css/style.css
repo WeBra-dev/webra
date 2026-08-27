@@ -870,7 +870,7 @@ section:not(.hero) {
 
 .portfolio-card {
     overflow: hidden;
-
+    text-align: center;
     border: 1px solid var(--border);
 
     border-radius: 16px;

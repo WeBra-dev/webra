@@ -4,6 +4,15 @@ header("Content-Type: application/json");
 
 require_once("../config.php");
 
+if ($id === '' || $token === '') {
+    echo json_encode([
+        "status" => false,
+        "erro" => "Webhook do Discord não configurado"
+    ]);
+
+    exit;
+}
+
 $webhook = "https://discord.com/api/webhooks/" . $id . "/" . $token;
 
 $nome = $_POST['nome'] ?? '';
@@ -59,7 +68,6 @@ if ($resposta === false) {
 }
 
 $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
 
 if ($httpCode >= 200 && $httpCode < 300) {
     echo json_encode([
