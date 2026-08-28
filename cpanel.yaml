@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/SEU_USUARIO/public_html/
+    - export DEPLOYPATH=/home4/webra89/public_html/
     - /bin/cp -R ajax $DEPLOYPATH
     - /bin/cp -R assets $DEPLOYPATH
     - /bin/cp -R exemplos $DEPLOYPATH
