@@ -65,20 +65,24 @@
                                 recaptcha:token
                             },
                             success:function(resposta){
+                                $('.alerta').show();
 
-                                console.log(resposta);
-
-                                if(resposta.status){
-                                    console.log("Mensagem enviada!");
-                                }else{
-                                    console.log(resposta.erro);
+                                if(resposta.status) {
+                                    $('#aviso').text("Agradecemos pelo contato! Assim que possivel, entraremos em contato.").css('color', 'white');
+        
+                                     nome.val('');
+                                     email.val('');
+                                     mensagem.val('');
+                                     
+                                } else {
+                                    $('#aviso').text("Erro: "+resposta.erro).css('color','red');
                                 }
 
                             },
-                            error:function(xhr){
-
-                                console.log("Erro na requisição.");
-                                console.log(xhr.responseText);
+                            error:function(err){
+                                $('.alerta').show();
+                                $('#aviso').text("Tivemos um problema com o seu envio. Lamentamos muito por isso!");
+                                console.log("Erro: ", err.status, err.statusText)
 
                             }
                         });
