@@ -7,7 +7,7 @@
 
     <meta name="description" content="Desenvolvemos sites modernos, rápidos e personalizados para empresas e negócios.">
     <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js?render=6LfkasQtAAAAAJEbHS_yFVNKgnK7gAa4POKpyyah"></script>
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LfkasQtAAAAAJEbHS_yFVNKgnK7gAa4POKpyyah"></script>
 
     <title>Webra</title>
 
@@ -48,8 +48,11 @@
                     } 
 
 
-                grecaptcha.ready(function(){
-                    grecaptcha.execute("6LfkasQtAAAAAJEbHS_yFVNKgnK7gAa4POKpyyah",{action:"contato"}).then(function(token){
+                grecaptcha.enterprise.ready(function(){
+                    grecaptcha.enterprise.execute(
+                        "6LfkasQtAAAAAJEbHS_yFVNKgnK7gAa4POKpyyah",
+                        {action:"contato"}
+                    ).then(function(token){
 
                         $.ajax({
                             url:"./ajax/ajax_contato",
@@ -62,6 +65,7 @@
                                 recaptcha:token
                             },
                             success:function(resposta){
+
                                 console.log(resposta);
 
                                 if(resposta.status){
@@ -69,13 +73,23 @@
                                 }else{
                                     console.log(resposta.erro);
                                 }
+
                             },
-                            error:function(){
+                            error:function(xhr){
+
                                 console.log("Erro na requisição.");
+                                console.log(xhr.responseText);
+
                             }
                         });
 
+                    }).catch(function(erro){
+
+                        console.log("Erro no reCAPTCHA:");
+                        console.log(erro);
+
                     });
+
                 });
 
             });
