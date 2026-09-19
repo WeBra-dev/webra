@@ -7,6 +7,7 @@
 
     <meta name="description" content="Desenvolvemos sites modernos, rápidos e personalizados para empresas e negócios.">
     <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfQU8QtAAAAAAAyZPPOoFFklubqklIrBMOu5xNk"></script>
 
     <title>Webra</title>
 
@@ -47,34 +48,34 @@
                     } 
 
 
-                $.ajax({
-                    url: './ajax/ajax_contato',
-                    type: 'POST',
-                    dataType: 'JSON',
-                    data: {
-                        nome: nome.val(),
-                        email: email.val(),
-                        mensagem: mensagem.val()
-                    },
-                    success: function(retorno) {
-                        $('.alerta').show();
+                grecaptcha.ready(function(){
+                    grecaptcha.execute("6LfQU8QtAAAAAAAyZPPOoFFklubqklIrBMOu5xNk",{action:"contato"}).then(function(token){
 
-                        if(retorno.status) {
-                            $('#aviso').text("Agradecemos pelo contato! Assim que possivel, entraremos em contato.").css('color', 'white');
+                        $.ajax({
+                            url:"./ajax/ajax_contato",
+                            type:"POST",
+                            dataType:"json",
+                            data:{
+                                nome:$("#nome").val(),
+                                email:$("#email").val(),
+                                mensagem:$("#mensagem").val(),
+                                recaptcha:token
+                            },
+                            success:function(resposta){
+                                console.log(resposta);
 
-                             nome.val('');
-                             email.val('');
-                             mensagem.val('');
-                             
-                        } else {
-                            $('#aviso').text("Houve um problema de comunicação com a API. Lamentamos muito por isso!");
-                        }
-                    },
-                    error: function(err) {
-                        $('.alerta').show();
-                        $('#aviso').text("Tivemos um problema com o seu envio. Lamentamos muito por isso!");
-                        console.log("Erro: ", err.status, err.statusText)
-                    }
+                                if(resposta.status){
+                                    console.log("Mensagem enviada!");
+                                }else{
+                                    console.log(resposta.erro);
+                                }
+                            },
+                            error:function(){
+                                console.log("Erro na requisição.");
+                            }
+                        });
+
+                    });
                 });
 
             });
