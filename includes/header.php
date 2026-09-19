@@ -23,9 +23,16 @@
 
             $('#nome').on('input', () => {$('#nome').css('border-color', '')});
             $('#email').on('input', () => {$('#email').css('border-color', '')});
+
+            let enviando = false;
             
             $('.enviarMensagem').on('click', function(e){
                 e.preventDefault();
+
+                if(enviando){
+                    return false;
+                }
+
                 let nome = $('#nome');
                 let email = $('#email');
                 let mensagem = $('#mensagem');
@@ -47,6 +54,7 @@
                         return false;
                     } 
 
+                    enviando=true;
 
                 grecaptcha.enterprise.ready(function(){
                     grecaptcha.enterprise.execute(
@@ -65,6 +73,7 @@
                                 recaptcha:token
                             },
                             success:function(resposta){
+                                enviando = false;
                                 $('.alerta').show();
 
                                 if(resposta.status) {
@@ -79,15 +88,25 @@
                                 }
 
                             },
-                            error:function(err){
+                            error:function(xhr){
+                                enviando = false;
                                 $('.alerta').show();
-                                $('#aviso').text("Tivemos um problema com o seu envio. Lamentamos muito por isso!");
-                                console.log("Erro: ", err.status, err.statusText)
 
+                                let resposta=xhr.responseJSON;
+
+                                if(resposta && resposta.erro){
+                                    $('#aviso').text(resposta.erro).css('color','red');
+                                }else{
+                                    $('#aviso').text("Tivemos um problema com o seu envio. Lamentamos muito por isso!");
+                                }
+
+                                console.log("Erro: ",xhr.status,xhr.statusText);
                             }
                         });
 
                     }).catch(function(erro){
+
+                        enviando = false;
 
                         console.log("Erro no reCAPTCHA:");
                         console.log(erro);

@@ -58,7 +58,6 @@ $respostaRecaptcha=curl_exec($ch);
 
 if($respostaRecaptcha===false){
 
-    curl_close($ch);
 
     http_response_code(500);
 
@@ -72,7 +71,6 @@ if($respostaRecaptcha===false){
 
 $httpCode=curl_getinfo($ch,CURLINFO_HTTP_CODE);
 
-curl_close($ch);
 
 $recaptchaData=json_decode($respostaRecaptcha,true);
 
@@ -136,13 +134,49 @@ $nome=trim($_POST['nome']??'');
 $email=trim($_POST['email']??'');
 $mensagem=trim($_POST['mensagem']??'');
 
-if($nome==='' || $email==='' || $mensagem===''){
+if(mb_strlen($nome)>100){
 
     http_response_code(400);
 
     echo json_encode([
         "status"=>false,
-        "erro"=>"Preencha todos os campos"
+        "erro"=>"Nome muito longo"
+    ]);
+
+    exit;
+}
+
+if(mb_strlen($email)>150){
+
+    http_response_code(400);
+
+    echo json_encode([
+        "status"=>false,
+        "erro"=>"E-mail muito longo"
+    ]);
+
+    exit;
+}
+
+if(mb_strlen($mensagem)>1024){
+
+    http_response_code(400);
+
+    echo json_encode([
+        "status"=>false,
+        "erro"=>"Mensagem muito longa"
+    ]);
+
+    exit;
+}
+
+if($nome==='' || $email===''){
+
+    http_response_code(400);
+
+    echo json_encode([
+        "status"=>false,
+        "erro"=>"Os campos nome e e-mail são obrigatórios"
     ]);
 
     exit;
@@ -192,7 +226,7 @@ $dados=[
                 ],
                 [
                     "name"=>"Mensagem",
-                    "value"=>$mensagem,
+                    "value"=>$mensagem!==''?$mensagem:"Nenhuma mensagem informada",
                     "inline"=>false
                 ]
             ]
@@ -216,7 +250,6 @@ $resposta=curl_exec($ch);
 
 if($resposta===false){
 
-    curl_close($ch);
 
     http_response_code(500);
 
@@ -230,7 +263,6 @@ if($resposta===false){
 
 $httpCode=curl_getinfo($ch,CURLINFO_HTTP_CODE);
 
-curl_close($ch);
 
 if($httpCode>=200 && $httpCode<300){
 
