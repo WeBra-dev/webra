@@ -7,7 +7,7 @@
 
     <meta name="description" content="Desenvolvemos sites modernos, rápidos e personalizados para empresas e negócios.">
     <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js?render=6LfQU8QtAAAAAAAyZPPOoFFklubqklIrBMOu5xNk"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfkasQtAAAAAJEbHS_yFVNKgnK7gAa4POKpyyah"></script>
 
     <title>Webra</title>
 
@@ -49,7 +49,7 @@
 
 
                 grecaptcha.ready(function(){
-                    grecaptcha.execute("6LfQU8QtAAAAAAAyZPPOoFFklubqklIrBMOu5xNk",{action:"contato"}).then(function(token){
+                    grecaptcha.execute("6LfkasQtAAAAAJEbHS_yFVNKgnK7gAa4POKpyyah",{action:"contato"}).then(function(token){
 
                         $.ajax({
                             url:"./ajax/ajax_contato",
