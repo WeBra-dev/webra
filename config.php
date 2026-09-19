@@ -31,4 +31,5 @@ if (is_readable($envFile)) {
 
 $id = getenv('DISCORD_WEBHOOK_ID') ?: ($env['DISCORD_WEBHOOK_ID'] ?? '');
 $token = getenv('DISCORD_WEBHOOK_TOKEN') ?: ($env['DISCORD_WEBHOOK_TOKEN'] ?? '');
+$recaptchaKey = getenv('RECAPTCHA_KEY') ?: ($env['RECAPTCHA_KEY'] ?? '');
 ?>
