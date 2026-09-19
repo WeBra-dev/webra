@@ -14,12 +14,6 @@ if($_SERVER['REQUEST_METHOD']!=='POST'){
 }
 
 require_once("../config.php");
-require_once("../vendor/autoload.php");
-
-use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
-use Google\Cloud\RecaptchaEnterprise\V1\Event;
-use Google\Cloud\RecaptchaEnterprise\V1\Assessment;
-use Google\Cloud\RecaptchaEnterprise\V1\CreateAssessmentRequest;
 
 $recaptcha=$_POST['recaptcha']??'';
 
@@ -34,81 +28,105 @@ if($recaptcha===''){
     exit;
 }
 
-$recaptchaKey='6LfkasQtAAAAAJEbHS_yFVNKgnK7gAa4POKpyyah';
+$recaptchaSiteKey='6LfkasQtAAAAAJEbHS_yFVNKgnK7gAa4POKpyyah';
 $project='recaptcha-webra-1789835756038';
 
-try{
+$url="https://recaptchaenterprise.googleapis.com/v1/projects/".$project."/assessments?key=".$recaptchaApiKey;
 
-    $client=new RecaptchaEnterpriseServiceClient();
+$dadosRecaptcha=[
+    "event"=>[
+        "token"=>$recaptcha,
+        "siteKey"=>$recaptchaSiteKey,
+        "userIpAddress"=>$_SERVER['REMOTE_ADDR']??'',
+        "userAgent"=>$_SERVER['HTTP_USER_AGENT']??''
+    ]
+];
 
-    $projectName=$client->projectName($project);
+$ch=curl_init($url);
 
-    $event=(new Event())
-        ->setSiteKey($recaptchaKey)
-        ->setToken($recaptcha);
+curl_setopt_array($ch,[
+    CURLOPT_POST=>true,
+    CURLOPT_POSTFIELDS=>json_encode($dadosRecaptcha),
+    CURLOPT_HTTPHEADER=>[
+        "Content-Type: application/json"
+    ],
+    CURLOPT_RETURNTRANSFER=>true,
+    CURLOPT_TIMEOUT=>10
+]);
 
-    $assessment=(new Assessment())
-        ->setEvent($event);
+$respostaRecaptcha=curl_exec($ch);
 
-    $request=(new CreateAssessmentRequest())
-        ->setParent($projectName)
-        ->setAssessment($assessment);
+if($respostaRecaptcha===false){
 
-    $response=$client->createAssessment($request);
-
-    if(!$response->getTokenProperties()->getValid()){
-
-        http_response_code(403);
-
-        echo json_encode([
-            "status"=>false,
-            "erro"=>"Falha na verificacao de seguranca"
-        ]);
-
-        $client->close();
-
-        exit;
-    }
-
-    if($response->getTokenProperties()->getAction()!=='contato'){
-
-        http_response_code(403);
-
-        echo json_encode([
-            "status"=>false,
-            "erro"=>"Falha na verificacao de seguranca"
-        ]);
-
-        $client->close();
-
-        exit;
-    }
-
-    $score=$response->getRiskAnalysis()->getScore();
-
-    if($score<0.5){
-
-        http_response_code(403);
-
-        echo json_encode([
-            "status"=>false,
-            "erro"=>"Falha na verificacao de seguranca"
-        ]);
-
-        $client->close();
-
-        exit;
-    }
-
-    $client->close();
-
-}catch(Exception $e){
+    curl_close($ch);
 
     http_response_code(500);
 
     echo json_encode([
         "status"=>false,
         "erro"=>"Nao foi possivel validar a seguranca"
+    ]);
+
+    exit;
+}
+
+$httpCode=curl_getinfo($ch,CURLINFO_HTTP_CODE);
+
+curl_close($ch);
+
+$recaptchaData=json_decode($respostaRecaptcha,true);
+
+if($httpCode<200 || $httpCode>=300){
+
+    http_response_code(500);
+
+    echo json_encode([
+        "status"=>false,
+        "erro"=>"Nao foi possivel validar a seguranca"
+    ]);
+
+    exit;
+}
+
+if(
+    !isset($recaptchaData['tokenProperties']) ||
+    !isset($recaptchaData['tokenProperties']['valid']) ||
+    $recaptchaData['tokenProperties']['valid']!==true
+){
+
+    http_response_code(403);
+
+    echo json_encode([
+        "status"=>false,
+        "erro"=>"Falha na verificacao de seguranca"
+    ]);
+
+    exit;
+}
+
+$action=$recaptchaData['tokenProperties']['action']??'';
+
+if($action!=='contato'){
+
+    http_response_code(403);
+
+    echo json_encode([
+        "status"=>false,
+        "erro"=>"Falha na verificacao de seguranca"
+    ]);
+
+    exit;
+}
+
+$score=$recaptchaData['riskAnalysis']['score']??0;
+
+if($score<0.5){
+
+    http_response_code(403);
+
+    echo json_encode([
+        "status"=>false,
+        "erro"=>"Falha na verificacao de seguranca"
     ]);
 
     exit;
@@ -198,6 +216,7 @@ $resposta=curl_exec($ch);
 
 if($resposta===false){
 
+    curl_close($ch);
 
     http_response_code(500);
 
@@ -211,6 +230,7 @@ if($resposta===false){
 
 $httpCode=curl_getinfo($ch,CURLINFO_HTTP_CODE);
 
+curl_close($ch);
 
 if($httpCode>=200 && $httpCode<300){
 
