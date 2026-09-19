@@ -7,22 +7,19 @@ if($_SERVER['REQUEST_METHOD']!=='POST'){
 
     echo json_encode([
         "status"=>false,
-        "erro"=>"Método não permitido"
+        "erro"=>"Metodo nao permitido"
     ]);
 
     exit;
 }
 
 require_once("../config.php");
+require_once("../vendor/autoload.php");
 
-if($id==='' || $token===''){
-    echo json_encode([
-        "status"=>false,
-        "erro"=>"Webhook do Discord não configurado"
-    ]);
-
-    exit;
-}
+use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\Event;
+use Google\Cloud\RecaptchaEnterprise\V1\Assessment;
+use Google\Cloud\RecaptchaEnterprise\V1\CreateAssessmentRequest;
 
 $recaptcha=$_POST['recaptcha']??'';
 
@@ -31,55 +28,87 @@ if($recaptcha===''){
 
     echo json_encode([
         "status"=>false,
-        "erro"=>"Falha na verificação de segurança"
+        "erro"=>"Falha na verificacao de seguranca"
     ]);
 
     exit;
 }
 
-$ch=curl_init("https://www.google.com/recaptcha/api/siteverify");
+$recaptchaKey='6LfkasQtAAAAAJEbHS_yFVNKgnK7gAa4POKpyyah';
+$project='recaptcha-webra-1789835756038';
 
-curl_setopt_array($ch,[
-    CURLOPT_POST=>true,
-    CURLOPT_POSTFIELDS=>http_build_query([
-        "secret"=>$recaptchaKey,
-        "response"=>$recaptcha,
-        "remoteip"=>$_SERVER['REMOTE_ADDR']??''
-    ]),
-    CURLOPT_RETURNTRANSFER=>true,
-    CURLOPT_TIMEOUT=>10
-]);
+try{
 
-$respostaRecaptcha=curl_exec($ch);
+    $client=new RecaptchaEnterpriseServiceClient();
 
-if($respostaRecaptcha===false){
+    $projectName=$client->projectName($project);
+
+    $event=(new Event())
+        ->setSiteKey($recaptchaKey)
+        ->setToken($recaptcha);
+
+    $assessment=(new Assessment())
+        ->setEvent($event);
+
+    $request=(new CreateAssessmentRequest())
+        ->setParent($projectName)
+        ->setAssessment($assessment);
+
+    $response=$client->createAssessment($request);
+
+    if(!$response->getTokenProperties()->getValid()){
+
+        http_response_code(403);
+
+        echo json_encode([
+            "status"=>false,
+            "erro"=>"Falha na verificacao de seguranca"
+        ]);
+
+        $client->close();
+
+        exit;
+    }
+
+    if($response->getTokenProperties()->getAction()!=='contato'){
+
+        http_response_code(403);
+
+        echo json_encode([
+            "status"=>false,
+            "erro"=>"Falha na verificacao de seguranca"
+        ]);
+
+        $client->close();
+
+        exit;
+    }
+
+    $score=$response->getRiskAnalysis()->getScore();
+
+    if($score<0.5){
+
+        http_response_code(403);
+
+        echo json_encode([
+            "status"=>false,
+            "erro"=>"Falha na verificacao de seguranca"
+        ]);
+
+        $client->close();
+
+        exit;
+    }
+
+    $client->close();
+
+}catch(Exception $e){
 
     http_response_code(500);
 
     echo json_encode([
         "status"=>false,
-        "erro"=>"Não foi possível validar a segurança"
-    ]);
-
-    exit;
-}
-
-
-$recaptchaData=json_decode($respostaRecaptcha,true);
-
-if(
-    !isset($recaptchaData['success']) ||
-    $recaptchaData['success']!==true ||
-    !isset($recaptchaData['score']) ||
-    $recaptchaData['score']<0.5 ||
-    !isset($recaptchaData['action']) ||
-    $recaptchaData['action']!=='contato'
-){
-    http_response_code(403);
-
-    echo json_encode([
-        "status"=>false,
-        "erro"=>"Falha na verificação de segurança"
+        "erro"=>"Nao foi possivel validar a seguranca"
     ]);
 
     exit;
@@ -90,6 +119,7 @@ $email=trim($_POST['email']??'');
 $mensagem=trim($_POST['mensagem']??'');
 
 if($nome==='' || $email==='' || $mensagem===''){
+
     http_response_code(400);
 
     echo json_encode([
@@ -101,11 +131,24 @@ if($nome==='' || $email==='' || $mensagem===''){
 }
 
 if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+
     http_response_code(400);
 
     echo json_encode([
         "status"=>false,
-        "erro"=>"E-mail inválido"
+        "erro"=>"E-mail invalido"
+    ]);
+
+    exit;
+}
+
+if(!isset($id) || !isset($token) || $id==='' || $token===''){
+
+    http_response_code(500);
+
+    echo json_encode([
+        "status"=>false,
+        "erro"=>"Webhook do Discord nao configurado"
     ]);
 
     exit;
@@ -155,9 +198,12 @@ $resposta=curl_exec($ch);
 
 if($resposta===false){
 
+
+    http_response_code(500);
+
     echo json_encode([
         "status"=>false,
-        "erro"=>"Não foi possível enviar a mensagem"
+        "erro"=>"Nao foi possivel enviar a mensagem"
     ]);
 
     exit;
@@ -167,12 +213,18 @@ $httpCode=curl_getinfo($ch,CURLINFO_HTTP_CODE);
 
 
 if($httpCode>=200 && $httpCode<300){
+
     echo json_encode([
         "status"=>true
     ]);
+
 }else{
+
+    http_response_code(500);
+
     echo json_encode([
         "status"=>false,
-        "erro"=>"Não foi possível enviar a mensagem"
+        "erro"=>"Nao foi possivel enviar a mensagem"
     ]);
 }
+?>
