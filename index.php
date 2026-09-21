@@ -1,8 +1,5 @@
 <?php include("includes/header.php"); ?>
 <main>
-    <!-- ========================================
-         HERO
-    ========================================= -->
     <section id="inicio" class="hero">
         <div class="container hero-content">
             <div class="hero-text">
@@ -59,9 +56,6 @@
             </div>
         </div>
     </section>
-    <!-- ========================================
-         SERVIÇOS
-    ========================================= -->
     <section id="servicos" class="services">
         <div class="container">
             <div class="section-header">
@@ -129,9 +123,6 @@
             </div>
         </div>
     </section>
-    <!-- ========================================
-         SOBRE
-    ========================================= -->
     <section id="sobre" class="about">
         <div class="container about-content">
             <div class="about-visual">
@@ -165,9 +156,6 @@
             </div>
         </div>
     </section>
-    <!-- ========================================
-         DIFERENCIAIS
-    ========================================= -->
     <section class="differentials">
         <div class="container">
             <div class="section-header">
@@ -215,9 +203,6 @@
             </div>
         </div>
     </section>
-    <!-- ========================================
-         PORTFÓLIO
-    ======================================== -->
     <section id="portfolio" class="portfolio">
         <div class="container">
             <div class="section-header">
@@ -289,9 +274,6 @@
             </div>
         </div>
     </section>
-    <!-- ========================================
-         CTA / CONTATO
-    ======================================== -->
     <section id="contato" class="cta">
         <div class="container">
             <div class="cta-content">
